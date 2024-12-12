@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "001934b0-d1be-4609-8823-206fd66d0970",
+		"name": "Monumentos V2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38617670"
+	},
+	"item": [
+		{
+			"name": "Lista con parametros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}?sort=asc&maxLatitude=45.678",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "asc"
+						},
+						{
+							"key": "maxLatitude",
+							"value": "45.678"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREAR MONUMENTO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 8,\r\n        \"countryCode\": \"AA\",\r\n        \"countryName\": \"AA\",\r\n        \"cityName\": \"AA\",\r\n        \"latitude\": 41.9028,\r\n        \"longitude\": 12.4964,\r\n        \"name\": \"AA\",\r\n        \"description\": \"AA\",\r\n        \"image\": \"AA\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}",
+					"host": [
+						"{{BASE_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET POR ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}1",
+					"host": [
+						"{{BASE_URL}}1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EDITAR",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"countryCode\": \"ES\",\r\n    \"countryName\": \"Spain\",\r\n    \"cityName\": \"Madrid\",\r\n    \"latitude\": 40.4165,\r\n    \"longitude\": -3.70256,\r\n    \"name\": \"Santiago Bernabéu\",\r\n    \"description\": \"El mejor estadio del mundo.\",\r\n    \"image\": \"https://upload.wikimedia.org/wikipedia/commons/0/0e/Estadio_Santiago_Bernab%C3%A9u_Madrid.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}1",
+					"host": [
+						"{{BASE_URL}}1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BORRAR",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}2",
+					"host": [
+						"{{BASE_URL}}2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "localhost:8080/monumentos/",
+			"type": "string"
+		}
+	]
+}
