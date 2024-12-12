@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/monumentos")
+@RequestMapping("/monumentos/")
 @RequiredArgsConstructor
 public class MonumentoController {
 
@@ -26,28 +26,28 @@ public class MonumentoController {
     @Autowired
     private MonumentoService monumentoService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Monumento>> listarMonumentos(){
         return new ResponseEntity<>(monumentoService.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<Monumento> getById(@PathVariable Long id) {
         return ResponseEntity.ok(monumentoService.getMonumentoById(id));
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<Monumento> addMonumento(@RequestBody Monumento m) {
         Monumento nuevoMonumento = monumentoService.guardarMonumento(m);
         return ResponseEntity.status(HttpStatus.CREATED).body(monumentoService.guardarMonumento(m));
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<Monumento> modificarMonumento(@RequestBody Monumento m, @PathVariable Long id) {
         return ResponseEntity.ok(monumentoService.modificarMonumento(m, id));
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<?> deleteMonumento(@PathVariable Long id) {
         monumentoService.deleteMonumentoById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

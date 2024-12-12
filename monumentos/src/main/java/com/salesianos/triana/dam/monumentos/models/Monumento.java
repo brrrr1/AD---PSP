@@ -16,7 +16,7 @@ import jakarta.persistence.GenerationType;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Bares {
+public class Monumento {
 
 
         @Id
