@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.alumnoyproducto.alumno;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Product {
-
-    private Long id;
-    private String name;
-    private double price;
-
-
+public class Curso {
+    Long id;
+    String nombre;
+    String tipo;
+    String tutor;
+    String aula;
 }

@@ -1,27 +1,32 @@
-package com.example.demo;
+package com.example.demo.repositories;
 
+import com.example.demo.models.Product;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 @Repository
 public class ProductRepository {
 
     private HashMap<Long, Product> products = new HashMap<>();
+    private AtomicLong counter = new AtomicLong(0);
 
     @PostConstruct
     public void init() {
-        add(Product.builder().id(1L).name("Laptop").price(1200.0).build());
-        add(Product.builder().id(2L).name("Smartphone").price(800.0).build());
-        add(Product.builder().id(3L).name("Headphones").price(150.0).build());
-        add(Product.builder().id(4L).name("Monitor").price(300.0).build());
-        add(Product.builder().id(5L).name("Keyboard").price(50.0).build());
+        add(Product.builder().name("Laptop").price(1200.0).build());
+        add(Product.builder().name("Smartphone").price(800.0).build());
+        add(Product.builder().name("Headphones").price(150.0).build());
+        add(Product.builder().name("Monitor").price(300.0).build());
+        add(Product.builder().name("Keyboard").price(50.0).build());
     }
 
     public Product add(Product product) {
-        products.put(product.getId(), product);
+        long id = counter.incrementAndGet();
+        product.setId(id);
+        products.put(id, product);
         return product;
     }
 
@@ -49,22 +54,24 @@ public class ProductRepository {
         List<Product> data = new ArrayList<>(products.values());
         List<Product> result;
 
-        if(maxPrice < 0){
+        if (maxPrice < 0) {
             result = data;
         } else {
-            result = data.stream()
+            result = data
+                    .stream()
                     .filter(p -> p.getPrice() <= maxPrice)
                     .collect(Collectors.toCollection(ArrayList::new));
         }
 
-        if (sortDirection.equalsIgnoreCase("asc")){
+        if (sortDirection.equalsIgnoreCase("asc"))
             result.sort(Comparator.comparing(Product::getName));
-        } if (sortDirection.equalsIgnoreCase("desc")){
+        else if (sortDirection.equalsIgnoreCase("desc"))
             result.sort(Comparator.comparing(Product::getName).reversed());
-        }
 
         return Collections.unmodifiableList(result);
     }
+
+
 
 
 }
