@@ -59,8 +59,6 @@ public class MonumentoRepository {
                 .description("The Colosseum is an oval amphitheatre in the centre of the city of Rome, Italy.")
                 .image("https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Colosseo_2020.jpg/800px-Colosseo_2020.jpg")
                 .build());
-
-
     }
 
     public Monumento add(Monumento monumento) {
