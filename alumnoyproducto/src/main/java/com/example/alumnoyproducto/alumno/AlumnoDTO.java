@@ -8,7 +8,7 @@ public record AlumnoDTO(
         Direccion direccion
 ) {
 
-    //Método para convertir un AlumnoDTO en un Alumno
+
     public static AlumnoDTO toAlumno(Alumno alumno) {
         String apellidos = alumno.getApellido1() + " " + alumno.getApellido2();
         return new AlumnoDTO(

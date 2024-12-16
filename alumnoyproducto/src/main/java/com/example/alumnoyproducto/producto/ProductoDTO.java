@@ -8,7 +8,7 @@ public record ProductoDTO(
 ) {
 
 
-    //Método para convertir un ProductoDTO en un Producto
+
     public static ProductoDTO toProducto(Producto producto){
         return new ProductoDTO(
                 producto.getNombre(),

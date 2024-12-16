@@ -4,6 +4,14 @@ import com.example.demo.models.Product;
 import com.example.demo.dto.CreateProductDto;
 import com.example.demo.dto.GetProductListDto;
 import com.example.demo.services.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +20,31 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/product/")
 @RequiredArgsConstructor
+@Tag(name = "Producto", description = "El controlador de productos")
 public class ProductController {
 
     private final ProductService productService;
 
     @GetMapping
+    @Operation(summary = "Obtiene todos los productos")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Se han encontrado productos",
+                    content = { @Content(mediaType = "application/json",
+                    array = @ArraySchema(schema = @Schema (implementation = GetProductListDto.class)),
+                            examples = {@ExampleObject(
+                                    value = """
+                                            [
+                                                {"id": 1, "name": "Laptop", "price": 1234.56},
+                                                {"id": 2, "name": "Smartphone", "price": 999.99}
+                                            ]
+                                            """
+                            )}
+                    ) }),
+            @ApiResponse(responseCode = "404",
+                    description = "No se ha encontrado ningún producto",
+                    content = @Content),
+    })
     //public List<Product> getAll(
     public GetProductListDto getAll(
             @RequestParam(required = false, value = "maxPrice", defaultValue = "-1") double max,

@@ -1,4 +1,4 @@
-package com.example.monumentosv2;
+package com.example.monumentosv2.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

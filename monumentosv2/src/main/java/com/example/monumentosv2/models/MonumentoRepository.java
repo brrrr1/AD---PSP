@@ -1,15 +1,17 @@
-package com.example.monumentosv2;
+package com.example.monumentosv2.models;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 @Repository
 public class MonumentoRepository {
 
     private HashMap<Long, Monumento> monumentos = new HashMap<>();
+    private AtomicLong counter = new AtomicLong(0);
 
     @PostConstruct
     public void init() {
@@ -62,7 +64,9 @@ public class MonumentoRepository {
     }
 
     public Monumento add(Monumento monumento) {
-        monumentos.put(monumento.getId(), monumento);
+        long id = counter.incrementAndGet();
+        monumento.setId(id);
+        monumentos.put(id, monumento);
         return monumento;
     }
 

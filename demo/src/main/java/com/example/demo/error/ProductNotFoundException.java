@@ -3,7 +3,7 @@ package com.example.demo.error;
 public class ProductNotFoundException extends RuntimeException{
 
     public ProductNotFoundException (Long id) {
-        super("No hay productos con ese ID %d".formatted(id));
+        super("No hay productos con ese ID: %d".formatted(id));
     }
 
     public  ProductNotFoundException (String msg){
