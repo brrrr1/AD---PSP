@@ -1,0 +1,2 @@
+insert into productos (descripcion,nombre,precio, id, categoria_id) values ('Lorem ipsum dolor sit amet', 'Botellín fresquito', 1.0, nextval('productos_seq', currval('categorias_seq')));
+insert into categorias (nombre, id) values ('Bebidas', nextval('categorias_seq'));
