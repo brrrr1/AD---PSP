@@ -1,4 +1,3 @@
-
 package com.salesianos.data.error;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.net.URI;
-
 
 @RestControllerAdvice
 public class GlobalErrorController

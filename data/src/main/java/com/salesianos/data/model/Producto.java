@@ -1,4 +1,3 @@
-
 package com.salesianos.data.model;
 
 import jakarta.persistence.*;
@@ -17,14 +16,13 @@ import java.util.Objects;
 @Table(name = "productos")
 public class Producto {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     private Long id;
 
-    @Column(length = 512)
+    @Column(length = 100)
     private String nombre;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "text")
     private String descripcion;
 
     @Column(name = "precio")
@@ -33,7 +31,6 @@ public class Producto {
     @ManyToOne
     @JoinColumn(name = "categoria_id", foreignKey = @ForeignKey(name = "fk_producto_categoria"))
     private Categoria categoria;
-
 
     @Override
     public final boolean equals(Object o) {

@@ -16,7 +16,6 @@ public class CategoriaService {
 
     public List<Categoria> findAll() {
         List<Categoria> result = categoriaRepository.findAll();
-
         if (result.isEmpty())
             throw new EntityNotFoundException("No hay categorias con esos criterios de búsqueda");
         return result;
@@ -25,9 +24,10 @@ public class CategoriaService {
     public Categoria findById(Long id) {
         return categoriaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No hay categoria con ID: "+ id));
+
     }
 
-    public Categoria save(Categoria categoria) {
+    public Categoria save (Categoria categoria) {
         return categoriaRepository.save(categoria);
     }
 
@@ -38,6 +38,7 @@ public class CategoriaService {
                     return categoriaRepository.save(old);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("No hay categoria con ID: "+ id));
+
     }
 
     public void delete(Long id) {

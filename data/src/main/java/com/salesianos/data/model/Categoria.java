@@ -1,3 +1,4 @@
+
 package com.salesianos.data.model;
 
 import jakarta.persistence.*;
@@ -17,7 +18,8 @@ import java.util.Objects;
 @ToString
 public class Categoria {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     private String nombre;
