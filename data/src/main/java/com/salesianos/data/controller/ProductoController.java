@@ -5,6 +5,7 @@ import com.salesianos.data.dto.EditProductoCmd;
 import com.salesianos.data.dto.GetProductoDto;
 import com.salesianos.data.service.ProductoService;
 import com.salesianos.data.model.Producto;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ public class ProductoController {
                 .map(GetProductoDto::of)
                 .toList();
     }
+
 
     @GetMapping("/{id}")
     public Producto getById(@PathVariable Long id) {
