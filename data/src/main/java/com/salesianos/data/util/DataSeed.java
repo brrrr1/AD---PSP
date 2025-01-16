@@ -15,7 +15,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class DataSeed {
 
-    private final ProductoRepository repo;
+
     private final CategoriaRepository categoriaRepository;
     private final ProductoRepository productoRepository;
 

@@ -33,6 +33,11 @@ public class Producto {
 
     @ManyToOne
     @JoinColumn(name = "categoria_id", foreignKey = @ForeignKey(name = "fk_producto_categoria"))
+    @JoinTable(name = "producto_tag",
+            joinColumns = @JoinColumn(name = "producto_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"),
+            foreignKey = @ForeignKey(name = "fk_producto_tag_"),
+            inverseForeignKey = @ForeignKey(name = "fk_tag_producto"))
     //@JsonBackReference
     private Categoria categoria;
 
@@ -40,8 +45,8 @@ public class Producto {
     @JoinTable(
             name = "producto_tag",
             joinColumns = @JoinColumn(name = "producto_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id")
-            foreignKey = @ForeignKey(name = "fk_producto_tag"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"),
+            foreignKey = @ForeignKey(name = "fk_producto_tag_"),
             inverseForeignKey = @ForeignKey(name = "fk_tag_producto")
     )
     @Builder.Default
