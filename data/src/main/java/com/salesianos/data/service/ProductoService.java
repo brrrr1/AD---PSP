@@ -39,7 +39,7 @@ public class ProductoService {
                 .nombre(nuevo.nombre())
                 .precio(nuevo.precio())
                 //.categoria(categoriaRepository.getReferenceById(nuevo.categoriaId()))
-                .categoria(categoriaRepository.findById(nuevo.categoriaId()).orElse(null))
+                //.categoria(categoriaRepository.findById(nuevo.categoriaId()).orElse(null))
                 .descripcion(nuevo.descripcion())
                 .build());
     }
@@ -51,7 +51,7 @@ public class ProductoService {
                     old.setDescripcion(editProductoCmd.descripcion());
                     old.setPrecio(editProductoCmd.precio());
                     //old.setCategoria(categoriaRepository.getReferenceById(editProductoCmd.categoriaId()));
-                    old.setCategoria(categoriaRepository.findById(editProductoCmd.categoriaId()).orElse(null));
+                    //old.setCategoria(categoriaRepository.findById(editProductoCmd.categoriaId()).orElse(null));
                     return productoRepository.save(old);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("No hay producto con ID: "+ id));

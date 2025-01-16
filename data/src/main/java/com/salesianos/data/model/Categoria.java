@@ -1,4 +1,3 @@
-
 package com.salesianos.data.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -28,22 +27,22 @@ public class Categoria {
 
     @OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
     @Builder.Default
-    //@ToString.Exclude@JsonManagedReference
+    @ToString.Exclude
+    //@JsonManagedReference
     private List<Producto> productos = new ArrayList<>();
 
-    // Métodos helper
+
+    // Métodos helpers
 
     public void addProducto(Producto p) {
-        this.getProductos().add(p);
         p.setCategoria(this);
+        this.getProductos().add(p);
     }
 
     public void removeProducto(Producto p) {
         this.getProductos().remove(p);
         p.setCategoria(null);
     }
-
-
 
 
     @Override

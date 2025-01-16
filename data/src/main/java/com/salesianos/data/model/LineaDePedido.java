@@ -1,9 +1,6 @@
 package com.salesianos.data.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -16,8 +13,14 @@ import lombok.*;
 @IdClass(LineaPedidoId.class)
 public class LineaDePedido {
 
-    @Id @GeneratedValue
-    Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Id
+    @ManyToMany
+    private Producto producto;
+
 
 
 }

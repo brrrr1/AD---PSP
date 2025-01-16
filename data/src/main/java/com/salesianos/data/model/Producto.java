@@ -16,7 +16,7 @@ import java.util.Set;
 @Builder
 @Entity
 @ToString
-@Table(name = "productos")
+@Table(name = "producto")
 public class Producto {
 
     @Id @GeneratedValue
@@ -31,26 +31,31 @@ public class Producto {
     @Column(name = "precio")
     private double precio;
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_id", foreignKey = @ForeignKey(name = "fk_producto_categoria"))
-    @JoinTable(name = "producto_tag",
-            joinColumns = @JoinColumn(name = "producto_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id"),
-            foreignKey = @ForeignKey(name = "fk_producto_tag_"),
-            inverseForeignKey = @ForeignKey(name = "fk_tag_producto"))
-    //@JsonBackReference
-    private Categoria categoria;
 
-    @ManyToMany(fetch = FetchType.EAGER)//LADO PROPIETARIO
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "producto_tag",
             joinColumns = @JoinColumn(name = "producto_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"),
-            foreignKey = @ForeignKey(name = "fk_producto_tag_"),
-            inverseForeignKey = @ForeignKey(name = "fk_tag_producto")
+            foreignKey = @ForeignKey(name = "fk_producto_tag_producto"),
+            inverseForeignKey = @ForeignKey(name = "fk_producto_tag_tag")
     )
     @Builder.Default
     private Set<Tag> tags = new HashSet<>();
+
+
+    // Helpers
+
+    public void addTag(Tag t) {
+        this.tags.add(t);
+        t.getProducto().add(this);
+    }
+
+    public void removeTag(Tag t) {
+        this.tags.remove(t);
+        t.getProducto().remove(this);
+    }
+
 
     @Override
     public final boolean equals(Object o) {

@@ -2,22 +2,20 @@ package com.salesianos.data.controller;
 
 import com.salesianos.data.model.Categoria;
 import com.salesianos.data.service.CategoriaService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/categoria/")
+@RequestMapping("/category/")
+@RequiredArgsConstructor
 public class CategoriaController {
 
     private final CategoriaService categoriaService;
-
-    @Autowired
-    public CategoriaController(CategoriaService categoriaService) {
-        this.categoriaService = categoriaService;
-    }
 
     @GetMapping
     public List<Categoria> getAll() {
@@ -44,4 +42,5 @@ public class CategoriaController {
         categoriaService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
 }

@@ -8,79 +8,64 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
 public class DataSeed {
 
-
+    private final ProductoRepository repo;
     private final CategoriaRepository categoriaRepository;
     private final ProductoRepository productoRepository;
 
-
     @PostConstruct
-    public void run() {
+    public void run () {
 
-        //NO USAR OR ELSE USAR OPTIONAL
-        //Categoria c = categoriaRepository.findById(1L).orElse(null);
+        /*
 
-      /*
+        //Categoria c = categoriaRepository.getReferenceById(1L);
 
+        //No hacer orElse null, hacerlo mejor con Optional!!!!!
         Categoria c = null;
-        Optional<Categoria> optionalCategoria = categoriaRepository.findById(1L);
+        Optional<Categoria> categoriaOptional = categoriaRepository.findById(1L);
 
-        if (optionalCategoria.isPresent()) {
-            c = optionalCategoria.get();
+        if (categoriaOptional.isPresent()) {
+            c = categoriaOptional.get();
         }
 
-        Producto p = Producto.builder()
+        Producto p1 = Producto.builder()
                 .nombre("Un producto")
                 .descripcion("Se trata de un producto de nuestro catálogo")
                 .precio(123.45)
                 //.categoria(c)
                 .build();
 
-        c.addProducto(p);
+        c.addProducto(p1);
 
-        repo.save(p);
+        repo.save(p1);
 
         Producto p2 = Producto.builder()
                 .nombre("Otro producto")
                 .descripcion("Verás como tiene ID 3")
-                .precio(234.56)
+                .precio(123.45)
                 //.categoria(c)
                 .build();
 
         c.addProducto(p2);
 
-        repo.saveAll(List.of(p, p2));
+        repo.save(p2);
 
+        System.out.println("Productos de la categoría C1");
+        System.out.println(c.getProductos());
 
+        productoRepository.findAll()
+                .forEach(System.out::println);
 
-
-
-
-
-        productoRepository.findAll().forEach(System.out::println);
-
-
-
-
-
-
-
-
-       */
-
+         */
 
 
 
     }
-
-
-
-
 
 }
