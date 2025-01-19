@@ -1,10 +1,14 @@
 package com.salesianos.data.controller;
 
+
+import com.salesianos.data.dto.EditProductoCmd;
+import com.salesianos.data.dto.GetProductoDto;
 import com.salesianos.data.model.Categoria;
+import com.salesianos.data.model.Producto;
 import com.salesianos.data.service.CategoriaService;
-import lombok.Getter;
+import com.salesianos.data.service.ProductoService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,13 +32,16 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
-        return ResponseEntity.ok(categoriaService.save(categoria));
+    public ResponseEntity<Categoria> create(@RequestBody Categoria nueva) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(
+                        categoriaService.save(nueva));
     }
 
     @PutMapping("/{id}")
-    public Categoria edit(@RequestBody Categoria categoria, @PathVariable Long id) {
-        return categoriaService.edit(categoria, id);
+    public Categoria edit(@RequestBody Categoria aEditar,
+                          @PathVariable Long id) {
+        return categoriaService.edit(aEditar, id);
     }
 
     @DeleteMapping("/{id}")
@@ -42,5 +49,6 @@ public class CategoriaController {
         categoriaService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
 
 }

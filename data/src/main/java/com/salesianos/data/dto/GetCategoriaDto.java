@@ -1,12 +1,14 @@
 package com.salesianos.data.dto;
 
-public record GetCategoriaDto(
-        Long id,
-        String nombre
-) {
+import com.salesianos.data.model.Categoria;
 
-    public static GetCategoriaDto fromCategoria(Long id, String nombre) {
-        return new GetCategoriaDto(id, nombre);
+public record GetCategoriaDto(Long id, String nombre) {
+
+    public static GetCategoriaDto of(Categoria categoria) {
+        return new GetCategoriaDto(categoria.getId(), categoria.getNombre());
     }
+
+
+
 
 }

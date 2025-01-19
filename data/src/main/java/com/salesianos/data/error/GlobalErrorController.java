@@ -9,6 +9,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.net.URI;
 
+
 @RestControllerAdvice
 public class GlobalErrorController
         extends ResponseEntityExceptionHandler {

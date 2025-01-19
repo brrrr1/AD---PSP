@@ -2,6 +2,7 @@ package com.salesianos.data.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.Accessors;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.util.*;
@@ -25,7 +26,7 @@ public class Tag {
     @Builder.Default
     @Setter(AccessLevel.NONE)
     @ToString.Exclude
-    private Set<Producto> producto = new HashSet<>();
+    private Set<Producto> productos = new HashSet<>();
 
     @Override
     public final boolean equals(Object o) {

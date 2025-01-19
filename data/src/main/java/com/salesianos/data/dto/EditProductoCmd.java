@@ -6,5 +6,4 @@ public record EditProductoCmd(
         double precio,
         Long categoriaId
 ) {
-
 }

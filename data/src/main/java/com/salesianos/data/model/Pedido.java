@@ -11,11 +11,11 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity
-@ToString
 public class Pedido {
 
     @Id
@@ -25,14 +25,29 @@ public class Pedido {
     @Builder.Default
     private LocalDateTime fechaCreacion = LocalDateTime.now();
 
+    private String cliente;
+
     @OneToMany(
             mappedBy = "pedido",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-            @Builder.Default
+    @Builder.Default
     @ToString.Exclude
-    private List<LineaDePedido> lineas = new ArrayList<>();
+    @Setter(AccessLevel.NONE)
+    private List<LineaPedido> lineasPedido = new ArrayList<>();
+
+    // Helpers
+
+    public void addLineaPedido(LineaPedido lineaPedido) {
+        lineasPedido.add(lineaPedido);
+        lineaPedido.setPedido(this);
+    }
+
+    public void removeLineaPedido(LineaPedido lineaPedido) {
+        lineasPedido.remove(lineaPedido);
+        //lineaPedido.setPedido(null); // No es necesaria gracias a orphanRemoval
+    }
 
 
     @Override

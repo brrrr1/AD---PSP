@@ -16,44 +16,46 @@ import java.util.Set;
 @Builder
 @Entity
 @ToString
-@Table(name = "producto")
 public class Producto {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
-    @Column(length = 100)
+    @Column(length = 512)
     private String nombre;
 
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "TEXT")
     private String descripcion;
 
     @Column(name = "precio")
     private double precio;
 
+    @ManyToOne
+    @JoinColumn(name = "categoria_id",
+            foreignKey = @ForeignKey(name = "fk_producto_categoria"))
+    //@JsonBackReference
+    private Categoria categoria;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "producto_tag",
-            joinColumns = @JoinColumn(name = "producto_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id"),
+    @JoinTable(name = "producto_tag",
+            joinColumns = @JoinColumn(name="producto_id"),
+            inverseJoinColumns = @JoinColumn(name="tag_id"),
             foreignKey = @ForeignKey(name = "fk_producto_tag_producto"),
             inverseForeignKey = @ForeignKey(name = "fk_producto_tag_tag")
     )
     @Builder.Default
     private Set<Tag> tags = new HashSet<>();
 
-
-    // Helpers
-
+    // Helpers Producto - Tag
     public void addTag(Tag t) {
         this.tags.add(t);
-        t.getProducto().add(this);
+        t.getProductos().add(this);
     }
 
     public void removeTag(Tag t) {
         this.tags.remove(t);
-        t.getProducto().remove(this);
+        t.getProductos().remove(this);
     }
 
 

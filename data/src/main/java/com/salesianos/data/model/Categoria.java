@@ -1,6 +1,6 @@
+
 package com.salesianos.data.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -43,7 +43,6 @@ public class Categoria {
         this.getProductos().remove(p);
         p.setCategoria(null);
     }
-
 
     @Override
     public final boolean equals(Object o) {

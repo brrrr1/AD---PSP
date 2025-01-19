@@ -1,4 +1,3 @@
-
 package com.salesianos.data.dto;
 
 import com.salesianos.data.model.Producto;
@@ -7,7 +6,7 @@ public record GetProductoDto(
         Long id,
         String nombre,
         double precio,
-        GetCategoriaDto categoriaId
+        GetCategoriaDto categoria
 ) {
 
     public static GetProductoDto of(Producto p) {
@@ -15,9 +14,8 @@ public record GetProductoDto(
                 p.getId(),
                 p.getNombre(),
                 p.getPrecio(),
-                GetCategoriaDto.fromCategoria(p.getCategoria().getId(), p.getCategoria().getNombre())
+                GetCategoriaDto.of(p.getCategoria())
         );
-
     }
 
 }
